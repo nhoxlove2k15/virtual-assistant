@@ -7,7 +7,7 @@ robot_brain = ""
 while True :
     with speech_recognition.Microphone() as mic:
         print("Robot: I'm Listening")
-        audio = robot_ear.listen(mic)
+        audio =robot_ear.record(mic, duration=3) 
         print("Robot:...")
     try :
         you = robot_ear.recognize_google(audio)
@@ -29,6 +29,8 @@ while True :
     elif "time" in you:
         robot_brain = now.strftime("%H hours %M minutes %S seconds")
     elif "bye" in you :
+        robot_brain ="Good Bye , Thank you , Have a nice day"
+        print("Robot says: " , robot_brain)
         robot_mouth.say(robot_brain)
         robot_mouth.runAndWait()
         break
